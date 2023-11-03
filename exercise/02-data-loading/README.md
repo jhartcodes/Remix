@@ -2,6 +2,8 @@
 
 ## 📝 Notes
 
+~ is a helper in remix to find things in folders.
+
 ## 🤓 Background
 
 Data loading is built into Remix.
