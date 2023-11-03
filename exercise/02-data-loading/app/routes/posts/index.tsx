@@ -1,12 +1,5 @@
-import { prisma } from "~/db.server";
 import { json } from "@remix-run/node";
 import { useLoaderData, Link } from "@remix-run/react";
-
-const getPosts = async () => {
-  return prisma.post.findMany({
-    select: { title: true, slug: true, markdown: true },
-  });
-};
 
 export const loader = async () => {
   const posts = await getPosts();
