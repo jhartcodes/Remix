@@ -3,15 +3,15 @@ import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { getPost } from "~/models/post.server";
 import { marked } from "marked";
-
+import invariant from "tiny-invariant";
 export async function loader({ params }: LoaderArgs) {
+  invariant(params.slug, `params.slug is required`);
+
   const post = await getPost(params.slug);
+  invariant(post, `Post not found: ${params.slug}`);
+
   const html = marked(post.markdown);
-  console.log(post, "post return");
-  return json({
-    post,
-    html,
-  });
+  return json({ post, html });
 }
 
 export default function PostSlug() {
